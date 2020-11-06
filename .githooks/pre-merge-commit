@@ -3,3 +3,7 @@
 set -e # abort script at first error
 
 echo "PRE-MERGE-COMMIT"
+set +e
+CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+echo "current branch: ${CURRENT_BRANCH}"
+set -e
