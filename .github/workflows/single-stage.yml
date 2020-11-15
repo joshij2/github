@@ -19,5 +19,9 @@ jobs:
           node-version: 14.x
       - name: install node packages #We install the packages from the package manifest.
         run: npm install
-      - name: run the linter #We run the linter using the script alias in the package manifest.
-        run: npm run linter
+			- name: install the linter
+				run: npm install eslint
+			- name: run the linter
+				run: ./node_modules/.bin/eslint .
+      #- name: run the linter #We run the linter using the script alias in the package manifest.
+      #  run: npm run linter
