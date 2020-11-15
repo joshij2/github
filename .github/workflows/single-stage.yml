@@ -5,9 +5,9 @@ name: Single-Stage #Name of the workflow
 
 on:
   push: #runs when a push to master happens
-    branches: ['master']
+    branches: ['none']
   pull_request: #or when a pull from master is requested
-    branches: ['master']
+    branches: ['none']
 jobs:
   Linter:
     runs-on: ubuntu-latest
