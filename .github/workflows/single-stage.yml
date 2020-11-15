@@ -1,23 +1,23 @@
 
 # .github/workflows/single-stage.yml
 
-name: Single-Stage
+name: Single-Stage #Name of the workflow
 
 on:
-  push:
-    branches: ['none']
-  pull_request:
-    branches: ['none']
+  push: #runs when a push to master happens
+    branches: ['master']
+  pull_request: #or when a pull from master is requested
+    branches: ['master']
 jobs:
   Linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use NodeJS
+      - name: Use NodeJS #this action defines which version of node to install
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - name: install node packages
+      - name: install node packages #We install the packages from the package manifest.
         run: npm install
-      - name: run the linter
+      - name: run the linter #We run the linter using the script alias in the package manifest.
         run: npm run linter

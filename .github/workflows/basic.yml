@@ -4,8 +4,8 @@
 name: Basic # Name of the workflow/Github action file
 
 on: #file triggered on github action "push" 
-  push:
-    branches: ['*'] #whenever any branch is pushed to the server.
+  push: #CHANGE THE 'none' TO A '*' BEFORE RUNNING
+    branches: ['none'] #whenever any branch is pushed to the server.
 
 jobs:
   Test: #job number 1 is called "Test"
