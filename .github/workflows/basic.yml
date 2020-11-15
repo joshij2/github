@@ -5,22 +5,22 @@ name: Basic # Name of the workflow/Github action file
 
 on: #file triggered on github action "push" 
   push:
-    branches: ['none'] #whenever any branch is pushed to the server.
+    branches: ['*'] #whenever any branch is pushed to the server.
 
 jobs:
   Test: #job number 1 is called "Test"
     runs-on: ubuntu-latest #Each job needs to run on a server, the uses key lets us specify what OS and version to use. In our example we want to use the latest version of Ubuntu.
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 #each 'uses' is a new step
       - name: Run a one-line script #label for each line in the process
         run: echo Hello, world!
-      - name: Run a multi-line script
+      - name: Run a multi-line script #put a pipe first to indicate it is a multiline script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
 			- name: env vars
-				run: printenv
-			- name: GitHub Variables
-				run: |
+				run: printenv #Print the values of the specified environment VARIABLE(s)
+			- name: GitHub Variables 
+				run: | #print out the GITHUB_WORKSPACE and GITHUB_EVENT_NAME variables.
 					echo $GITHUB_WORKSPACE
 					echo $GITHUB_EVENT_NAME
