@@ -1,18 +1,18 @@
 
 # .github/workflows/basic.yml
 
-name: Basic
+name: Basic # Name of the workflow/Github action file
 
-on:
+on: #file triggered on github action "push" 
   push:
-    branches: ['none']
+    branches: ['none'] #whenever any branch is pushed to the server.
 
 jobs:
-  Test:
-    runs-on: ubuntu-latest
+  Test: #job number 1 is called "Test"
+    runs-on: ubuntu-latest #Each job needs to run on a server, the uses key lets us specify what OS and version to use. In our example we want to use the latest version of Ubuntu.
     steps:
       - uses: actions/checkout@v2
-      - name: Run a one-line script
+      - name: Run a one-line script #label for each line in the process
         run: echo Hello, world!
       - name: Run a multi-line script
         run: |

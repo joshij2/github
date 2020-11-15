@@ -1,0 +1,6 @@
+
+{
+  "preview": {
+        "Heroku": "https://{{domain5000}}/{{index}}"
+  }
+}
