@@ -18,7 +18,7 @@ const defaultPort = 8080
 const port = process.env.PORT || defaultPort
 
 router.get('/', async ctx => {
-	let json = await fs.readJson('./public/quotes.json') //change this from const to let
+	const json = await fs.readJson('./public/quotes.json'); //change this from const to let
 	console.log(json)
 	await ctx.render('quotes', json)
 })
