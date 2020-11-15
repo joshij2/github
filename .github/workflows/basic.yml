@@ -24,4 +24,4 @@ jobs:
       - name: run the linter
         run: ./node_modules/.bin/eslint .
       #- name: run the linter #We run the linter using the script alias in the package manifest.
-      #  run: npm run linter
+      #  run: npm run linter 
