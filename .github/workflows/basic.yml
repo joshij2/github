@@ -1,26 +1,27 @@
 
-# .github/workflows/basic.yml
+# .github/workflows/single-stage.yml
 
-name: Basic # Name of the workflow/Github action file
+name: Single-Stage #Name of the workflow
 
-on: #file triggered on github action "push" 
-  push: #CHANGE THE 'none' TO A '*' BEFORE RUNNING
-    branches: ['none'] #whenever any branch is pushed to the server.
-
+on:
+  push: #runs when a push to master happens
+    branches: ['master']
+  pull_request: #or when a pull from master is requested
+    branches: ['master']
 jobs:
-  Test: #job number 1 is called "Test"
-    runs-on: ubuntu-latest #Each job needs to run on a server, the uses key lets us specify what OS and version to use. In our example we want to use the latest version of Ubuntu.
+  Linter:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 #each 'uses' is a new step
-      - name: Run a one-line script #label for each line in the process
-        run: echo Hello, world!
-      - name: Run a multi-line script #put a pipe first to indicate it is a multiline script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-			- name: env vars
-				run: printenv #Print the values of the specified environment VARIABLE(s)
-			- name: GitHub Variables 
-				run: | #print out the GITHUB_WORKSPACE and GITHUB_EVENT_NAME variables.
-					echo $GITHUB_WORKSPACE
-					echo $GITHUB_EVENT_NAME
+      - uses: actions/checkout@v2
+      - name: Use NodeJS #this action defines which version of node to install
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: install node packages #We install the packages from the package manifest.
+        run: npm install
+      - name: install the linter
+        run: npm install eslint
+      - name: run the linter
+        run: ./node_modules/.bin/eslint .
+      #- name: run the linter #We run the linter using the script alias in the package manifest.
+      #  run: npm run linter
